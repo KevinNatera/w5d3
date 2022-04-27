@@ -23,6 +23,16 @@ CREATE TABLE question_follows (
     FOREIGN KEY (question_id) REFERENCES questions(id)
 );
 
+
+CREATE TABLE question_likes (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    question_id INTEGER NOT NULL,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (question_id) REFERENCES questions(id)
+);
+
 INSERT INTO 
     users(fname,lname)
 VALUES
