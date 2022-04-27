@@ -4,3 +4,12 @@ CREATE TABLE users (
     fname TEXT NOT NULL,
     lname TEXT,
 );
+
+CREATE TABLE questions (
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    user_id INTEGER NOT NULL,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
