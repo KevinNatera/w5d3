@@ -80,11 +80,21 @@ VALUES
 
 
 INSERT INTO
+    replies(body,user_id,question_id,reply_id)
+VALUES 
+    ('because it''s trash',(SELECT id FROM users WHERE fname = 'Anon'), (SELECT id FROM questions WHERE title = 'Sort Question')),
+    ('LOL',(SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Sort Question'),(SELECT id FROM replies WHERE id = 1)),
+    ('wat',(SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Random Question 0987654')),
+    ('what*',(SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Random Question 0987654'),(SELECT id FROM replies WHERE id = 3)),
+    ('reported for spam',(SELECT id FROM users WHERE fname = 'Some'), (SELECT id FROM questions WHERE title = 'Random Question 983765'));
+
+
+INSERT INTO
     question_likes(user_id,question_id)
 VALUES 
     ((SELECT id FROM users WHERE fname = 'Anon'), (SELECT id FROM questions WHERE title = 'Sort Question')),
     ((SELECT id FROM users WHERE fname = 'Some'), (SELECT id FROM questions WHERE title = 'Sort Question')),
     ((SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Sort Question')),
-    ((SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Random Question 983765'))
-    ((SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Random Question 342'))
+    ((SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Random Question 983765')),
+    ((SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Random Question 342')),
     ((SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Random Question 0987654'));
