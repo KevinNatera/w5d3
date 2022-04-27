@@ -1,9 +1,15 @@
 PRAGMA foreign_keys = ON;
 
+DROP TABLE question_likes;
+DROP TABLE question_follows;
+DROP TABLE  replies;
+DROP TABLE  questions;
+DROP TABLE  users;
+
 CREATE TABLE users (
     id INTEGER PRIMARY KEY,
     fname TEXT NOT NULL,
-    lname TEXT NOT NULL,
+    lname TEXT NOT NULL
 );
 
 CREATE TABLE questions (
@@ -82,11 +88,11 @@ VALUES
 INSERT INTO
     replies(body,user_id,question_id,reply_id)
 VALUES 
-    ('because it''s trash',(SELECT id FROM users WHERE fname = 'Anon'), (SELECT id FROM questions WHERE title = 'Sort Question')),
-    ('LOL',(SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Sort Question'),(SELECT id FROM replies WHERE id = 1)),
-    ('wat',(SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Random Question 0987654')),
-    ('what*',(SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Random Question 0987654'),(SELECT id FROM replies WHERE id = 3)),
-    ('reported for spam',(SELECT id FROM users WHERE fname = 'Some'), (SELECT id FROM questions WHERE title = 'Random Question 983765'));
+    ('because it''s trash',(SELECT id FROM users WHERE fname = 'Anon'), (SELECT id FROM questions WHERE title = 'Sort Question'), NULL),
+    ('LOL',(SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Sort Question'), 1),
+    ('wat',(SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Random Question 0987654'), NULL),
+    ('what*',(SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Random Question 0987654'), 3),
+    ('reported for spam',(SELECT id FROM users WHERE fname = 'Some'), (SELECT id FROM questions WHERE title = 'Random Question 983765'), NULL);
 
 
 INSERT INTO
