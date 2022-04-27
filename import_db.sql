@@ -45,6 +45,8 @@ CREATE TABLE question_likes (
     FOREIGN KEY (question_id) REFERENCES questions(id)
 );
 
+
+
 INSERT INTO 
     users(fname,lname)
 VALUES
@@ -52,6 +54,8 @@ VALUES
     ('Some','Person'),
     ('Anon','Guy'),
     ('Random','Human');
+
+
 
 INSERT INTO
     questions(title,body,user_id)
@@ -62,3 +66,25 @@ VALUES
     ('Random Question 098765', 'djfbckjlnfew', (SELECT id FROM users WHERE fname = 'Random')),
     ('Random Question 0987654', 'dslkvmfwperkwoifwe?', (SELECT id FROM users WHERE fname = 'Kevin')),
     ('Random Question 98765', 'weoifhoejfoiwnfiownl', (SELECT id FROM users WHERE fname = 'Anon'));
+
+
+
+INSERT INTO
+    question_follows(user_id,question_id)
+VALUES 
+    ((SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Sort Question')),
+    ((SELECT id FROM users WHERE fname = 'Some'), (SELECT id FROM questions WHERE title = 'Sort Question')),
+    ((SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Sort Question')),
+    ((SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Random Question 342'));
+
+
+
+INSERT INTO
+    question_likes(user_id,question_id)
+VALUES 
+    ((SELECT id FROM users WHERE fname = 'Anon'), (SELECT id FROM questions WHERE title = 'Sort Question')),
+    ((SELECT id FROM users WHERE fname = 'Some'), (SELECT id FROM questions WHERE title = 'Sort Question')),
+    ((SELECT id FROM users WHERE fname = 'Random'), (SELECT id FROM questions WHERE title = 'Sort Question')),
+    ((SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Random Question 983765'))
+    ((SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Random Question 342'))
+    ((SELECT id FROM users WHERE fname = 'Kevin'), (SELECT id FROM questions WHERE title = 'Random Question 0987654'));
